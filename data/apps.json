@@ -1,0 +1,11 @@
+[
+  {
+    "slug": "hours-of-freedom",
+    "name": "Hours of freedom",
+    "date": "2026-10-23",
+    "description": "See how many hours of work a purchase costs now and how many hours of future freedom it costs later.",
+    "learned": "DRAFT — Taylor, edit this. A single HTML file was enough to show the tradeoff: hours of work a purchase costs now, and hours of future freedom it costs after compounding.",
+    "live": "/apps/hours-of-freedom/",
+    "code": "https://github.com/taylormarrbuilds/taylormarrbuilds.github.io/tree/main/apps/hours-of-freedom"
+  }
+]

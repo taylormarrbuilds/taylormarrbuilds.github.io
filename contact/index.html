@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Contact · Taylor Marr</title>
+  <meta name="description" content="Email Taylor Marr about a full-time role or a one-off project.">
+  <link rel="canonical" href="https://taylormarrbuilds.github.io/contact/">
+  <meta property="og:title" content="Contact · Taylor Marr">
+  <meta property="og:description" content="Email Taylor Marr about a full-time role or a one-off project.">
+  <meta property="og:url" content="https://taylormarrbuilds.github.io/contact/">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="en_US">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Contact · Taylor Marr">
+  <meta name="twitter:description" content="Email Taylor Marr about a full-time role or a one-off project.">
+  <meta name="theme-color" content="#16324f">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/css/site.css">
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+  <header class="site-header">
+    <div class="wrap header-inner">
+      <a class="site-name" href="/">Taylor Marr</a>
+      <nav aria-label="Primary">
+        <a href="/apps/">Apps</a>
+        <a href="/work/">Work with me</a>
+        <a href="/contact/" aria-current="page">Contact</a>
+      </nav>
+    </div>
+  </header>
+  <main id="main" class="wrap">
+    <!-- TODO: replace taylor@example.com with your real email. This address is fake. There is no form backend. -->
+    <h1>Contact</h1>
+    <p class="draft">
+      <strong class="draft-label">TODO</strong>
+      Replace <code>taylor@example.com</code> with your real email. That address is a placeholder and does not go anywhere.
+    </p>
+    <p class="intro">Email is the way to reach me.</p>
+    <p class="actions"><a class="button" id="mailto" href="mailto:taylor@example.com">Email taylor@example.com</a></p>
+    <p id="topic-note"></p>
+  </main>
+  <footer class="site-footer">
+    <div class="wrap footer-inner">
+      <p>Taylor Marr</p>
+      <nav aria-label="Footer">
+        <a href="/apps/">Apps</a>
+        <a href="/work/">Work with me</a>
+        <a href="/contact/" aria-current="page">Contact</a>
+      </nav>
+    </div>
+  </footer>
+  <script>
+    (function () {
+      var topics = { role: "Full-time role", project: "One-off project" };
+      var topic = new URLSearchParams(location.search).get("topic");
+      var label = topics[topic];
+      var link = document.getElementById("mailto");
+      var note = document.getElementById("topic-note");
+      if (!label || !link) return;
+      link.href = link.getAttribute("href") + "?subject=" + encodeURIComponent(label);
+      if (note) note.textContent = "The subject line is set to \"" + label + ".\"";
+    })();
+  </script>
+</body>
+</html>
