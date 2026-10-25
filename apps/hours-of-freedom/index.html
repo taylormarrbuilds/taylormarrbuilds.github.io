@@ -1,0 +1,28 @@
+<!doctype html><html><head><meta charset="utf-8"><title>Hours of freedom</title></head><body>
+<h3>Hours of freedom (prototype)</h3>
+<p>W after-tax hourly wage $<input id=W value=100 size=6>
+ r real return % <input id=r value=5 size=4>
+ g real wage growth % <input id=g value=1 size=4>
+ age <input id=age value=37 size=3> FI age <input id=fi value=67 size=3></p>
+<p>Amount $<input id=P size=8>
+ <select id=kind><option value=buy>Purchase</option><option value=save>Savings transfer</option></select>
+ <label><input type=checkbox id=worth> worth it (exclude from hours lost)</label>
+ <button onclick=add()>Add</button></p>
+<pre id=out></pre>
+<p>Net hours: <b id=net>0</b> <button onclick="L=[];save()">Clear log</button></p>
+<pre id=log></pre>
+<script>
+const v=id=>parseFloat(document.getElementById(id).value)||0;
+let L=JSON.parse(localStorage.hof||"[]");
+function calc(P){const W=v('W'),r=v('r')/100,g=v('g')/100,n=Math.max(0,v('fi')-v('age'));
+ return {now:P/W,fut:P*Math.pow(1+r,n)/(W*Math.pow(1+g,n)),n};}
+function show(){const P=v('P');if(!P){out.textContent='';return}const c=calc(P);
+ out.textContent=`Hours of work now: ${c.now.toFixed(1)}\nHours of future freedom (in ${c.n} yrs): ${c.fut.toFixed(1)}`;}
+function add(){const P=v('P');if(!P)return;const c=calc(P),k=kind.value;
+ L.push({P,k,worth:worth.checked,h:c.fut});save();}
+function save(){localStorage.hof=JSON.stringify(L);let net=0;
+ log.textContent=L.map(e=>{const s=e.k=='save'?e.h:(e.worth?0:-e.h);net+=s;
+ return `${e.k=='save'?'Saved':'Bought'} $${e.P}${e.worth?' (worth it)':''}: ${s>=0?'+':''}${s.toFixed(1)} h`}).join('\n');
+ document.getElementById('net').textContent=net.toFixed(1);}
+document.querySelectorAll('input,select').forEach(e=>e.oninput=show);save();
+</script></body></html>
